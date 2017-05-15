@@ -77,7 +77,9 @@ function wrapNext (next, route) {
 
     if (value === false) return next(tell('cancel', null, lastStatus || 500))
 
-    if (typeof value === 'object' && value) {
+    const type = typeof value
+
+    if ((type === 'object' && value !== null) || type === 'string') {
       return next(tell('redirect', value, lastStatus || 302))
     }
 
