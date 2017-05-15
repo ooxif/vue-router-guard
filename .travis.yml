@@ -1,0 +1,28 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - '6'
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
+script:
+  - yarn lint
+  - yarn test:cover
+
+after_success:
+  - yarn codeclimate
+  - yarn coveralls
+  - yarn codecov
+
+addons:
+  code_climate:
+    repo_token: 75a47eac5d9d2e55e4d74b99900eaa60f0fe8494db5691ddcbeef58ef19b469e
+
+cache:
+  directories:
+    - node_modules
+  yarn: true

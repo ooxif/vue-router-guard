@@ -1,0 +1,67 @@
+{
+  "private": true,
+  "name": "vue-router-guard",
+  "version": "0.0.1",
+  "description": "Extends route guards.",
+  "author": "oo <oo@xif.at>",
+  "license": "MIT",
+  "main": "index.js",
+  "jsnext:main": "index.es.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ooxif/vue-router-guard.git"
+  },
+  "scripts": {
+    "build": "node scripts/build",
+    "codeclimate": "cat ./coverage/lcov.info | codeclimate-test-reporter",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "lint": "standard",
+    "test": "jest",
+    "test:cover": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/__tests__/**"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "stage-0"
+    ]
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "peerDependencies": {
+    "vue": "^2.3.2",
+    "vue-router": "^2.5.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-jest": "^20.0.1",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "codeclimate-test-reporter": "^0.4.1",
+    "codecov": "^2.1.0",
+    "coveralls": "^2.13.0",
+    "del": "^2.2.2",
+    "jest": "^20.0.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-replace": "^1.1.1",
+    "standard": "^10.0.2",
+    "vue": "^2.3.2",
+    "vue-router": "^2.5.3"
+  }
+}
