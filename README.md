@@ -45,7 +45,7 @@ export default {
     const { id } = to.params
     
     fetchRemoteData(id).then((data) => {
-      next.props({ data })()
+      next.props({ data, found: true })()
     }, () => {
       // redirect with 301
       return next.redirect('/new-location', 301)
@@ -134,6 +134,8 @@ You can refer this value at `router.onReady(doneHandler)`.
     })
 
 > This method returns the `next` itself to chain other methods.
+
+> Caveat: SSR only - `next.status(number)` does nothing on the client-side.
 
 Check an example at [sample/server.js](/sample/server.js) and
 [sample/entry-server.js](/sample/entry-server.js)
