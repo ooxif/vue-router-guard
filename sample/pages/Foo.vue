@@ -35,7 +35,7 @@
 
       fetchRemoteData(id).then((remoteData) => {
         if (id === '3') {
-          next.status(404).props({found: false})()
+          next.status(404).props({ found: false })()
         } else if (id === '4') {
           next.redirect({ name: 'foo', params: { id: 1 } } )
         } else {
