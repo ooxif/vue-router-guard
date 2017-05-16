@@ -146,7 +146,7 @@ is an alias of `next.status(number)(false)`.
 
 is an alias of `next.status(number)(string|Object)`.
 
-## `next.props(Object)`
+## `next.props(Object) => next`
 
 will pass the props to an instance of the component.
 
