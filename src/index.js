@@ -69,9 +69,11 @@ function wrapNext (next, route) {
   let lastStatus
 
   function $next (value) {
+    const { length } = arguments
+
     lastProps && wrapMatchedProps(route.matched, lastProps)
 
-    if (!IS_SERVER) return next.call(this, value)
+    if (!IS_SERVER) return length ? next(value) : next()
 
     if (lastStatus) route.meta.status = lastStatus
 
@@ -83,7 +85,7 @@ function wrapNext (next, route) {
       return next(tell('redirect', value, lastStatus || 302))
     }
 
-    next(value)
+    length ? next(value) : next()
   }
 
   $next.cancel = function cancel (status) {
