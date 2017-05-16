@@ -71,7 +71,7 @@ export default {
 
 ## `next(boolean|string|Object|Function|Error)`
 
-`next(...)` is almost the same as original `next`.
+is almost the same as original `next`.
 (see https://router.vuejs.org/en/advanced/navigation-guards.html)
 
 On the server, there are some differences.
