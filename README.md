@@ -14,7 +14,7 @@
 
 Extends route guards.
 
-# usage
+# Usage
 
 ```javascript
 import { guard } from 'vue-router-guard'
@@ -31,7 +31,7 @@ export default {
 }
 ```
 
-# advanced usage
+# Advanced usage
 
  ```javascript
 import { beforeRoute } from 'vue-router-guard'
@@ -60,3 +60,94 @@ export default {
   })
 }
 ```
+
+# Install
+
+`npm install vue-router-guard`
+
+> no need to do `Vue.use(...)`
+
+# `next` methods
+
+## `next(boolean|string|Object|Function|Error)`
+
+`next(...)` is almost the same as original `next`.
+(see https://router.vuejs.org/en/advanced/navigation-guards.html)
+
+On the server, there are some differences.
+
+### `next(false)` during SSR
+
+will throw an error like below.
+
+    Error {
+        name: {string} 'vue-router-guard'
+        type: {string} 'cancel'
+        status: {number} 500 // you can set this by calling next.status(number)
+                             // or next.cancel(number)
+        value: undefined
+    }
+
+You can handle this error on the server using `router.onError(errorHandler)`
+and `router.onReady(doneHandler, errorHandler)`.
+
+    router.onError(err => {
+        if (err && err.name === 'vue-router-guard' && err.type === 'cancel') {
+            // ...
+        }
+    })
+
+Check an example at [sample/server.js](/sample/server.js)
+
+### `next(string|Object)` during SSR
+
+will throw an error like below.
+
+    Error {
+        name: {string} 'vue-router-guard'
+        type: {string} 'redirect'
+        status: {number} 302 // you can set this by calling next.status(number)
+                             // or next.redirect(string|Object, number)
+        value: {string|Object}
+    }
+
+You can handle this error on the server using `router.onError(errorHandler)`
+and `router.onReady(doneHandler, errorHandler)`.
+
+    router.onError(err => {
+        if (err && err.name === 'vue-router-guard' && err.type === 'redirect') {
+            // ...
+        }
+    })
+
+Check an example at [sample/server.js](/sample/server.js) and
+[sample/entry-server.js](/sample/entry-server.js)
+
+## `next.status(number) => next`
+
+sets the number to `route.meta.status`.
+
+You can refer this value at `router.onReady(doneHandler)`.
+
+    router.onReady(route => {
+       route.meta.status // is the value
+    })
+
+> This method returns the `next` itself to chain other methods.
+
+Check an example at [sample/server.js](/sample/server.js) and
+[sample/entry-server.js](/sample/entry-server.js)
+
+## `next.cancel(number = 500)`
+
+is an alias of `next.status(number)(false)`.
+
+## `next.redirect(string|Object, number = 302)`
+
+is an alias of `next.status(number)(string|Object)`.
+
+## `next.props(Object)`
+
+will pass the props to an instance of the component.
+
+> This method returns the `next` itself to chain other methods.

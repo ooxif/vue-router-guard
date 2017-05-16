@@ -56,10 +56,12 @@ function render (req, res) {
     const { name, status } = err || { status: 500 }
 
     if (name === ERROR_NAME) {
-      if (err.type === 'redirect') {
-        res.redirect(status || 302, err.value)
+      const { type } = err
 
-        return
+      if (type === 'cancel') {
+        return res.redirect('back')
+      } else if (type === 'redirect') {
+        return res.redirect(status || 302, err.value)
       }
     }
 
