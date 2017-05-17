@@ -75,8 +75,6 @@ function wrapNext (next, route) {
 
     if (!IS_SERVER) return length ? next(value) : next()
 
-    if (lastStatus) route.meta.status = lastStatus
-
     if (value === false) return next(tell('cancel', null, lastStatus || 500))
 
     const type = typeof value
@@ -84,6 +82,8 @@ function wrapNext (next, route) {
     if ((type === 'object' && value !== null) || type === 'string') {
       return next(tell('redirect', value, lastStatus || 302))
     }
+
+    if (lastStatus) route.meta.status = lastStatus
 
     length ? next(value) : next()
   }
