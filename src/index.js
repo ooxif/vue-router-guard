@@ -96,14 +96,16 @@ function wrapNext (next, route) {
 
   $next.cancel = function cancel (status) {
     lastProps = undefined
-    lastStatus = status
+
+    if (status) lastStatus = status
 
     return $next(false)
   }
 
-  $next.redirect = function redirect (to, status = 302) {
+  $next.redirect = function redirect (to, status) {
     lastProps = undefined
-    lastStatus = status
+
+    if (status) lastStatus = status
 
     return $next(to)
   }
