@@ -3,6 +3,12 @@ const IS_SERVER = process.env.VUE_ENV === 'server'
 const ERROR_NAME = 'vue-router-guard'
 const VERSION = '__VERSION__'
 
+function $object (...args) {
+  const obj = Object.create(null)
+
+  return args.length ? Object.assign(obj, ...args) : obj
+}
+
 function tell (type, value, status) {
   const err = new Error(`[${ERROR_NAME}] ${type}: ${value}`)
 
@@ -45,8 +51,8 @@ function wrapProps (props, key, overrideWith) {
     }
 
     return typeof origProps === 'object' && origProps
-      ? Object.assign({}, origProps, overrideWith)
-      : Object.assign({}, overrideWith)
+      ? $object(origProps, overrideWith)
+      : $object(overrideWith)
   }
 
   props[key].$unbind = $unbind
