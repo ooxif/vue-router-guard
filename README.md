@@ -69,7 +69,7 @@ export default {
 
 # `next` methods
 
-## `next(boolean|string|Object|Function|Error)`
+## `next(value?: boolean | string | Object | Function | Error)`
 
 is almost the same as original `next`.
 (see https://router.vuejs.org/en/advanced/navigation-guards.html)
@@ -78,7 +78,7 @@ On the server, there are some differences.
 
 ### `next(false)` during SSR
 
-will result with an error like below.
+ends with an error like below.
 
     Error {
         name: {string} 'vue-router-guard'
@@ -99,9 +99,9 @@ and `router.onReady(doneHandler, errorHandler)`.
 
 Check an example at [sample/server.js](/sample/server.js)
 
-### `next(string|Object)` during SSR
+### `next(to: string | Object)` during SSR
 
-will result with an error like below.
+ends with an error like below.
 
     Error {
         name: {string} 'vue-router-guard'
@@ -123,7 +123,7 @@ and `router.onReady(doneHandler, errorHandler)`.
 Check an example at [sample/server.js](/sample/server.js) and
 [sample/entry-server.js](/sample/entry-server.js)
 
-## `next.status(number) => next`
+## `next.status(code: number) => next`
 
 sets the number to `route.meta.status`.
 
@@ -144,7 +144,7 @@ Check an example at [sample/server.js](/sample/server.js) and
 
 is an alias of `next.status(code)(false)`.
 
-## `next.redirect(to: string | Object, status?: number)`
+## `next.redirect(to: string | Object, code?: number)`
 
 is an alias of `next.status(code)(to)`.
 
