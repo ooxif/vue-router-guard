@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "vue-router-guard",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Extends route guards.",
   "author": "oo <oo@xif.at>",
   "license": "MIT",
