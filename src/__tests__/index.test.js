@@ -3,7 +3,7 @@
 
   process.env.VUE_ENV = VUE_ENV
 
-  describe(`process.env.VUE_ENV = ${VUE_ENV}`, () => {
+  describe(VUE_ENV, () => {
     require('./tests')
   })
 })
