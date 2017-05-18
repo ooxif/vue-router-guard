@@ -108,14 +108,14 @@ function wrapNext (next, route) {
     return $next(to)
   }
 
-  $next.props = function props (overrideProps) {
-    lastProps = overrideProps
+  $next.props = function props (object) {
+    lastProps = object
 
     return $next
   }
 
-  $next.status = function status (overrideStatus) {
-    lastStatus = overrideStatus
+  $next.status = function status (code) {
+    lastStatus = code
 
     return $next
   }
