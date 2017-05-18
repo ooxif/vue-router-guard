@@ -20,15 +20,15 @@ function tell (type, value, status) {
   return err
 }
 
-function wrapProps (props, key, overrideWith) {
+function wrapProps (props, key, object) {
   let keyExists = key in props
   let origValue = props[key]
   let origType = keyExists ? typeof origValue : null
 
-  if (origValue === 'function' && origValue.$restore) {
+  if (origType === 'function' && origValue.$restore) {
     origValue.$restore()
 
-    return wrapProps(props, key, overrideWith)
+    return wrapProps(props, key, object)
   }
 
   function $restore () {
@@ -45,14 +45,18 @@ function wrapProps (props, key, overrideWith) {
     let origProps
 
     if (origValue) {
-      if (origValue === true) origProps = route.params
-      else if (origType === 'object') origProps = origValue
-      else if (origType === 'function') origProps = origValue(route)
+      if (origValue === true) {
+        origProps = route.params
+      } else if (origType === 'object') {
+        origProps = origValue
+      } else if (origType === 'function') {
+        origProps = origValue(route)
+      }
     }
 
     return typeof origProps === 'object' && origProps
-      ? $object(origProps, overrideWith)
-      : $object(overrideWith)
+      ? $object(origProps, object)
+      : $object(object)
   }
 
   props[key].$restore = $restore
