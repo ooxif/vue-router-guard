@@ -25,13 +25,13 @@ function wrapProps (props, key, overrideWith) {
   let origValue = props[key]
   let origType = keyExists ? typeof origValue : null
 
-  if (origValue === 'function' && origValue.$unbind) {
-    origValue.$unbind()
+  if (origValue === 'function' && origValue.$restore) {
+    origValue.$restore()
 
     return wrapProps(props, key, overrideWith)
   }
 
-  function $unbind () {
+  function $restore () {
     if (keyExists) {
       props[key] = origValue
     } else {
@@ -40,7 +40,7 @@ function wrapProps (props, key, overrideWith) {
   }
 
   props[key] = function $props (route) {
-    $unbind()
+    $restore()
 
     let origProps
 
@@ -55,7 +55,7 @@ function wrapProps (props, key, overrideWith) {
       : $object(overrideWith)
   }
 
-  props[key].$unbind = $unbind
+  props[key].$restore = $restore
 
   return null
 }
