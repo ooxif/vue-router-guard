@@ -62,9 +62,9 @@ function wrapProps (props, key, overrideWith) {
 
 function wrapMatchedProps (matched, values) {
   matched.forEach((record) => {
-    const { components, props } = record
+    const { props } = record
 
-    ;(components ? Object.keys(components) : ['default']).forEach((key) => {
+    Object.keys(record.components).forEach((key) => {
       wrapProps(props, key, values)
     })
   })
