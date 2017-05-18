@@ -24,7 +24,7 @@ export default {
 
   beforeRouteEnter: guard((to, from, next) => {
     fetchRemoteData().then((data) => {
-      // vue-router-guard can pass props to a component's instance.
+      // vue-router-guard can pass props to an instance of the component.
       next.props({ data })()
     })
   })
@@ -78,7 +78,7 @@ On the server, there are some differences.
 
 ### `next(false)` during SSR
 
-will throw an error like below.
+will result with an error like below.
 
     Error {
         name: {string} 'vue-router-guard'
@@ -101,7 +101,7 @@ Check an example at [sample/server.js](/sample/server.js)
 
 ### `next(string|Object)` during SSR
 
-will throw an error like below.
+will result with an error like below.
 
     Error {
         name: {string} 'vue-router-guard'
@@ -140,15 +140,15 @@ You can refer this value at `router.onReady(doneHandler)`.
 Check an example at [sample/server.js](/sample/server.js) and
 [sample/entry-server.js](/sample/entry-server.js)
 
-## `next.cancel(number = 500)`
+## `next.cancel(code?: number)`
 
-is an alias of `next.status(number)(false)`.
+is an alias of `next.status(code)(false)`.
 
-## `next.redirect(string|Object, number = 302)`
+## `next.redirect(to: string | Object, status?: number)`
 
-is an alias of `next.status(number)(string|Object)`.
+is an alias of `next.status(code)(to)`.
 
-## `next.props(Object) => next`
+## `next.props(props: Object) => next`
 
 will pass the props to an instance of the component.
 
