@@ -6,7 +6,7 @@ const VERSION = '__VERSION__'
 function $object (...args) {
   const obj = Object.create(null)
 
-  return args.length ? Object.assign(obj, ...args) : obj
+  return Object.assign(obj, ...args)
 }
 
 function tell (type, value, status) {
@@ -40,8 +40,6 @@ function wrapProps (props, key, object) {
   }
 
   props[key] = function $props (route) {
-    $restore()
-
     let origProps
 
     if (origValue) {
@@ -55,8 +53,8 @@ function wrapProps (props, key, object) {
     }
 
     return typeof origProps === 'object' && origProps
-      ? $object(origProps, object)
-      : $object(object)
+      ? $object(origProps, object || $object())
+      : $object(object || $object())
   }
 
   props[key].$restore = $restore
@@ -81,7 +79,7 @@ function wrapNext (next, route) {
   function $next (value) {
     const { length } = arguments
 
-    lastProps && wrapMatchedProps(route.matched, lastProps)
+    wrapMatchedProps(route.matched, lastProps)
 
     if (!IS_SERVER) return length ? next(value) : next()
 

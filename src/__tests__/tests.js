@@ -412,7 +412,7 @@ describe('next.props', () => {
               return expectedComposedPropsMap
             })
 
-          const numPropsMapsListTests = (origPropsMapList.length + 1) * 3
+          const numPropsMapsListTests = (origPropsMapList.length + 1) * 2
           const next = jest.fn()
           const { cb, cnt, from } = stubs({ next, to })
 
@@ -447,6 +447,7 @@ describe('next.props', () => {
               .toEqual(expectedComposedPropsMapList[i])
           })
 
+          /*
           const lastPropsMapList = to.matched.map(r => $object(r.props))
 
           expect(lastPropsMapList).toHaveLength(origPropsMapList.length)
@@ -454,6 +455,7 @@ describe('next.props', () => {
           origPropsMapList.forEach((origPropsMap, i) => {
             expect(lastPropsMapList[i]).toEqual(origPropsMapList[i])
           })
+          */
         })
       })
     })
@@ -493,6 +495,28 @@ describe('next.props', () => {
     })(to, from, next)
 
     expect(to.matched[0].props.default()).toEqual({ a: 3 })
-    expect(to.matched[0].props.default).toEqual({ a: 1 })
+    expect(to.matched[0].props.default).toEqual(expect.any(Function))
+    expect(to.matched[0].props.default()).toEqual({ a: 3 })
+  })
+
+  test('wrap twice (no props)', () => {
+    const to = { matched: [{
+      components: { default: {} },
+      props: {}
+    }] }
+
+    const { from, next } = stubs()
+
+    guard(($to, $from, $next) => {
+      $next.props({ a: 2, b: 2 })()
+    })(to, from, next)
+
+    expect(to.matched[0].props.default).toEqual(expect.any(Function))
+
+    guard(($to, $from, $next) => {
+      $next.props({ a: 3 })()
+    })(to, from, next)
+
+    expect(to.matched[0].props.default()).toEqual({ a: 3 })
   })
 })
