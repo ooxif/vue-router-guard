@@ -57,7 +57,7 @@
     "coveralls": "^2.13.0",
     "del": "3.0.0",
     "jest": "^20.0.1",
-    "rollup": "^0.41.6",
+    "rollup": "0.48.2",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-replace": "^1.1.1",
     "standard": "^10.0.2",
