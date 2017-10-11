@@ -2329,13 +2329,13 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-hot-reload-api@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
+vue-hot-reload-api@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.0.tgz#9a21b35ced3634434a43ee80efb7350ea8fb206d"
 
-vue-loader@13.2.1:
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.2.1.tgz#0c6cba3154d2b325d17dde2c0be52c34b888bc6d"
+vue-loader@13.3.0:
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.3.0.tgz#3bf837d490ba5dea6fc07e0835ffa6c688c8af33"
   dependencies:
     consolidate "^0.14.0"
     hash-sum "^1.0.2"
@@ -2347,7 +2347,7 @@ vue-loader@13.2.1:
     prettier "^1.7.0"
     resolve "^1.4.0"
     source-map "^0.6.1"
-    vue-hot-reload-api "^2.1.0"
+    vue-hot-reload-api "^2.2.0"
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
