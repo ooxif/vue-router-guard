@@ -2403,9 +2403,9 @@ vue-style-loader@^3.0.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.0.tgz#2e138f1643e131f24f6e19733690713b7543a937"
+vue-template-compiler@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.1.tgz#d62e1655970c17c97278d52c9e2809d1a4b39e17"
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
