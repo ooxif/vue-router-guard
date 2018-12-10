@@ -61,7 +61,7 @@
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-replace": "1.1.1",
     "standard": "10.0.3",
-    "vue": "2.4.2",
+    "vue": "2.5.20",
     "vue-router": "2.7.0"
   }
 }
